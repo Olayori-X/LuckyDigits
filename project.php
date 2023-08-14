@@ -74,7 +74,7 @@ if(isset($_SESSION['Email']) && isset($_SESSION['UserName'])){
 				<input type="number" name = "gssNo1" class = "input" id="guess1" min="1" max="10" placeholder="Guess 1" required>
 				<input type="number" name = "gssNo2" class = "input" id="guess2" min="1" max="10" placeholder="Guess 2" required>
 				<input type="number" name = "gssNo3" class = "input" id="guess3" min="1" max="10" placeholder="Guess 3" required>
-				<input type ="hidden" id = "hiddenID">
+				<input type ="hidden" id = "hiddenID" name = "multID">
 				<button id = "button" type = "button" onclick="createID('gssForms', 'hiddenID')">Spin the Wheel</button>
 				<p id="result"></p>
 				</div>

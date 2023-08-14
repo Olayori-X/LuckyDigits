@@ -12,16 +12,16 @@ session_start();
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username= '[Email to send mail]';//email to send mail
-    $mail->Password = 'password';//password
+    $mail->Username= '[Email to send mail]'; //Email to send mail
+    $mail->Password = 'Password'; //Password
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
 
-    $mail->setFrom('[Email to send mail]');//email to send mail
+    $mail->setFrom('[Email to send mail]'); //Email to send mail
 
     // $mail->addAddress($email);
 
-    // $mail->isHTML(true);
+    $mail->isHTML(true);
 
     /*if(isset($_POST['signup-email'])){
         $email = $_POST['signup-email'];//Still need to do a lot of validation here

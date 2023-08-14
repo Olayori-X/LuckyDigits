@@ -3,35 +3,22 @@
 include "connect.php";
 include "sendmail.php";
 
-$fnumbers = "SELECT Fnumber FROM mnumbers";
-$snumbers = "SELECT Snumber FROM mnumbers";
-$tnumbers = "SELECT Tnumber FROM mnumbers";
+$numbers = "SELECT * FROM mnumbers";
 
-$SQLrandomone = mysqli_query($connect, $fnumbers);
-$SQLrandomtwo = mysqli_query($connect, $snumbers);
-$SQLrandomthree = mysqli_query($connect, $tnumbers);
+$SQLrandom = mysqli_query($connect, $numbers);
 
 $arraynumbersone = [];
 $arraynumberstwo = [];
 $arraynumbersthree = [];
 
-while($rowone = mysqli_fetch_array($SQLrandomone)){
+while($rowone = mysqli_fetch_array($SQLrandom)){
 	$arraynumbersone[] = $rowone['Fnumber'];
-}
-
-while($rowtwo = mysqli_fetch_array($SQLrandomtwo)){
-	$arraynumberstwo[] = $rowtwo['Snumber'];
-}
-
-while($rowthree = mysqli_fetch_array($SQLrandomthree)){
-	$arraynumbersthree[] = $rowthree['Tnumber'];
+	$arraynumberstwo[] = $rowone['Snumber'];
+	$arraynumbersthree[] = $rowone['Tnumber'];
 }
 
 
-//print_r($arraynumbersone);
-
-//array_push($arraynumbers, $ree);
-//print_r($arraynumbers);
+//pick numbers at random
 $randomnumberone = array_rand($arraynumbersone);
 $Num_one = $arraynumbersone[$randomnumberone];
 
@@ -41,23 +28,28 @@ $Num_two = $arraynumberstwo[$randomnumbertwo];
 $randomnumberthree = array_rand($arraynumbersthree);
 $Num_three = $arraynumbersthree[$randomnumberthree];
 
-$emails= "SELECT Email FROM mnumbers WHERE Fnumber = $Num_one AND Snumber = $Num_two AND Tnumber = $Num_three";
-$emailquery = mysqli_query($connect, $rowonetwo);
+$info= "SELECT * FROM mnumbers WHERE Fnumber = $Num_one AND Snumber = $Num_two AND Tnumber = $Num_three";
+$infoquery = mysqli_query($connect, $info);
 
-if($emailquery -> num_rows > 0){
+if($infoquery -> num_rows > 0){
 	$chosenemails = [];
-	while($row = $emailquery->fetch_array()) {
+	$chosenID = [];
+	while($row = $infoquery->fetch_array()) {
 		$chosenemails[] = $row['Email'];
+		$chosenIDs[] = $row['ID'];
 	}
 }
 
 for($i = 0; $i < count($chosenemails); $i++){
-	$mail->isHTML(true);
 	$email = $chosenemails[$i];//Still need to do a lot of validation here
+	$ID = $chosenIDs[$i];
 	$mail->addAddress($email);
-	$mail->Subject = "Link to change your password";
-	$mail->Body = "Click <a href = 'localhost/project/claimreward.php?key=$email'>here</a> to verify your email";
+	$mail->Subject = "Claim your reward";
+	$mail->Body = "Click <a href = 'localhost/project/claimreward.php?key=$ID'>here</a> to verify your email";
 	$mail->send();
+
+	$insertID = "INSERT INTO winners (ID, Email) VALUES ('$ID', '$email')";
+	$insertquery = mysqli_query($connect, $insertID);
 }
 
 echo

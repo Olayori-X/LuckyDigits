@@ -41,7 +41,7 @@
                 echo "Email is required";
             }
             else{
-                $check = "SELECT Username FROM users WHERE Email = '$email' ";
+                $check = "SELECT Username FROM users_info WHERE Email = '$email' ";
 
                 $confirm = mysqli_query($connect, $check);
 
@@ -73,7 +73,7 @@
                 echo "Username is required";
             }
             else{
-                $checkusername = "SELECT Username fROM users WHERE Username = '$username' ";
+                $checkusername = "SELECT Username fROM users_info WHERE Username = '$username' ";
                 $confirmusername = mysqli_query($connect, $checkusername);
 
                 if(mysqli_num_rows($confirmusername) < 1){

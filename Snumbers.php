@@ -10,6 +10,7 @@ if (isset($_POST['gssNo1']) && isset($_POST['gssNo2']) && isset($_POST['gssNo3']
 	$MOnumber = validate($_POST['gssNo1']);
 	$MTnumber = validate($_POST['gssNo2']);
 	$MTHnumber = validate($_POST['gssNo3']);
+	$ID = validate($_POST['multID']);
 
 	if(empty($MOnumber)){
 		header("Location: project.php?emessage=You need to input all the numbers");
@@ -31,7 +32,7 @@ if (isset($_POST['gssNo1']) && isset($_POST['gssNo2']) && isset($_POST['gssNo3']
 				if($row['Email'] === $email){
 					header("Location: project.php?emessage=You can only guess once");
 				}else {
-					$INDM = "INSERT INTO mnumbers (Email, Fnumber, Snumber, Tnumber) VALUES ('$email','$MOnumber', '$MTnumber', '$MTHnumber')";
+					$INDM = "INSERT INTO mnumbers (Email, ID, Fnumber, Snumber, Tnumber) VALUES ('$email', '$ID', '$MOnumber', '$MTnumber', '$MTHnumber')";
 					$SQLnos = mysqli_query($connect, $INDM);
 					
 					if ($SQLnos){
@@ -41,7 +42,7 @@ if (isset($_POST['gssNo1']) && isset($_POST['gssNo2']) && isset($_POST['gssNo3']
 				}
 			}
 		}else{
-			$INDM = "INSERT INTO mnumbers (Email, Fnumber, Snumber, Tnumber) VALUES ('$email','$MOnumber', '$MTnumber', '$MTHnumber')";
+			$INDM = "INSERT INTO mnumbers (Email, ID, Fnumber, Snumber, Tnumber) VALUES ('$email', '$ID', '$MOnumber', '$MTnumber', '$MTHnumber')";
 			$SQLnos = mysqli_query($connect, $INDM);
 					
 			if ($SQLnos){

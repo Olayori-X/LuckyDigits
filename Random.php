@@ -13,7 +13,7 @@ while($row = mysqli_fetch_array($SQLrandom)){
 	$arraynumbers[] = $row['Lnumber'];
 }
 //array_push($arraynumbers, $ree);
-//print_r($arraynumbers);
+//print_r($arraynumbers)
 if(count($arraynumbers) > 0){
 	$randomnumber = array_rand($arraynumbers);
 	$chosennumber = $arraynumbers[$randomnumber];
@@ -28,12 +28,15 @@ if(count($arraynumbers) > 0){
 
 
 	for($i = 0; $i < count($chosenemails); $i++){
-		$mail->isHTML(true);
 		$email = $chosenemails[$i];//Still need to do a lot of validation here
+		$ID = $chosenIDs[$i];
 		$mail->addAddress($email);
-		$mail->Subject = "Link to change your password";
-		$mail->Body = "Click <a href = 'localhost/project/claimreward.php?key=$email'>here</a> to verify your email";
+		$mail->Subject = "Claim your reward";
+		$mail->Body = "Click <a href = 'localhost/project/claimreward.php?key=$ID'>here</a> to verify your email";
 		$mail->send();
+
+		$insertID = "INSERT INTO winners (ID, Email) VALUES ('$ID', '$email')";
+		$insertquery = mysqli_query($connect, $insertID);
 	}
 
 	echo

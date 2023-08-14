@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: #f2f2f2;
+  }
+
+  /* Common styles */
+header {
+    background-color: #222;
+    padding: 10px 0;
+  }
+
+  h1 {
+    color: #ffcc00;
+    margin: 0;
+  }
+
+  /* Styles for the navigation bar */
+  nav {
+    background-color: #444;
+    padding: 10px 0;
+  }
+
+  nav a {
+    color: #ffcc00;
+    text-decoration: none;
+    margin: 0 15px;
+  }
+
+  #body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+
+  /* Container for the login and sign-up forms */
+  #forms-container {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  h2 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+  }
+
+  label, input {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffcc00;
+    color: #222;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #ffd633;
+  }
+
+  p {
+    margin-top: 20px;
+  }
